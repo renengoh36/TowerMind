@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TowerMind | Autonomous Sustainability Building AI</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/floorplan.css" />
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-content">
+      <a href="#" class="logo"><img src="assets/Tower_mind__2.png" alt="TowerMind Logo" class="logo-img"></a>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#floorplan">Floor Plan</a></li>
+        <li><a href="#forecast">Forecast</a></li>
+        <li><a href="#alerts">Alerts</a></li>
+      </ul>
+      <a href="#simulator" class="nav-btn">Run Simulation</a>
+    </div>
+  </nav>
+
+  <header id="home" class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <span class="hero-badge">● Smart Building Intelligence</span>
+        <h1>Autonomous Sustainability Building AI</h1>
+        <p>TowerMind helps buildings monitor resources, detect waste, forecast future cost, and simulate energy-saving strategies before implementation.</p>
+        <div class="hero-actions">
+          <a href="#dashboard" class="btn primary">View Dashboard</a>
+          <a href="#simulator" class="btn secondary">Try AI Simulator</a>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="vb-card" id="vbCard">
+          <div class="vb-top">
+            <span class="vb-status-pill green">Optimal</span>
+            <h3 class="vb-name">⚡ Volt Buddy</h3>
+            <p class="vb-subtitle">Cute AI energy mascot for TowerMind</p>
+
+            <div class="vb-man-wrap">
+              <div class="vb-man floating">
+                <div class="vb-head">😎</div>
+                <div class="vb-arm left"></div>
+                <div class="vb-arm right"></div>
+                <div class="vb-body-container">
+                  <div class="vb-body">
+                    <div class="vb-fill" style="height: 65%;"></div>
+                    <div class="vb-value">65%</div>
+                  </div>
+                </div>
+                <div class="vb-leg left"></div>
+                <div class="vb-leg right"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vb-month-selector">
+            <button class="active" data-period="current">Current<span class="vb-sub-label">This month</span></button>
+            <button data-period="threeMonths">3 Months<span class="vb-sub-label">Quarter</span></button>
+            <button data-period="oneYear">1 Year<span class="vb-sub-label">Annual</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="dashboard" class="section">
+    <div class="container">
+      <div class="section-heading">
+        <span>Resource Monitoring</span>
+        <h2>Building Resource Dashboard</h2>
+        <p>Monitor electricity, water, occupancy, carbon emissions and cost in one smart view.</p>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-card"><span>Energy Usage</span><h3>—</h3><p>Loading…</p></div>
+        <div class="kpi-card"><span>Water Usage</span><h3>—</h3><p>Loading…</p></div>
+        <div class="kpi-card"><span>Occupancy</span><h3>—</h3><p>Loading…</p></div>
+        <div class="kpi-card"><span>Carbon Emission</span><h3>—</h3><p>Loading…</p></div>
+        <div class="kpi-card dark"><span>Monthly Cost</span><h3>—</h3><p>Loading…</p></div>
+      </div>
+      <div class="dashboard-grid">
+        <div class="chart-card large">
+          <div class="card-title"><h3>Energy Consumption Trend</h3><span>Last 7 Days</span></div>
+          <div id="energyChart" class="chart"></div>
+        </div>
+        <div class="chart-card">
+          <div class="card-title"><h3>Room Utilization</h3><span>Today</span></div>
+          <div id="roomChart" class="chart"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <section id="floorplan" class="section">
+    <div class="container">
+      <div class="section-heading">
+        <span>Floor Status</span>
+        <h2>Floor Plan</h2>
+        <p>Each floor uses its own floor plan. Click a floor, then click hotspots to view live usage status.</p>
+      </div>
+
+      <div class="fp-floor-grid" id="fpFloorGrid"></div>
+
+      <div class="fp-expand" id="fpExpand">
+        <div class="fp-expand-inner">
+          <div class="fp-output">
+            <div class="fp-plan-card">
+              <div class="fp-plan-title-row">
+                <h3 class="fp-plan-title"></h3>
+                <span class="fp-status fp-plan-status"></span>
+              </div>
+              <div class="fp-plan-wrap"></div>
+            </div>
+            <div class="fp-panel">
+              <span class="fp-status fp-zone-badge"></span>
+              <h3 class="fp-zone-title"></h3>
+              <p class="fp-zone-desc"></p>
+              <div class="fp-grid">
+                <div class="fp-metric"><small>Energy</small><strong class="fp-m-energy"></strong></div>
+                <div class="fp-metric"><small>Water</small><strong class="fp-m-water"></strong></div>
+                <div class="fp-metric"><small>Occupancy</small><strong class="fp-m-occ"></strong></div>
+                <div class="fp-metric"><small>Cost</small><strong class="fp-m-cost"></strong></div>
+              </div>
+              <div class="fp-ai"><strong>AI Recommendation</strong><p class="fp-m-ai"></p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="forecast" class="section">
+    <div class="container">
+      <div class="section-heading"><span>Predictive Intelligence</span><h2>AI Forecast & Driver Analysis</h2></div>
+      <div class="forecast-grid">
+        <div class="forecast-card dark-card"><span>Next Month Projection</span><h3>—</h3><p>Loading forecast…</p></div>
+        <div class="forecast-card"><span>Expected Energy</span><h3>—</h3><p>Loading forecast…</p></div>
+        <div class="forecast-card"><span>Budget Risk</span><h3>—</h3><p>Loading forecast…</p></div>
+      </div>
+      <div class="chart-card">
+        <div class="card-title"><h3>30-Day Forecast Trend</h3><span>Confidence Band</span></div>
+        <div id="forecastChart" class="chart tall"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="alerts" class="section features-section">
+    <div class="container">
+      <div class="section-heading-small-title"><span>AI Insights</span><h2>Anomalies & Optimization Recommendations</h2></div>
+      <div class="insight-grid"></div>
+    </div>
+  </section>
+
+  <section id="simulator" class="section simulator-section">
+    <div class="container">
+      <div class="section-heading light"><span>Strategy Simulator</span><h2>AI Sustainability Simulation Engine</h2><p>Ask TowerMind how to reduce energy cost and compare multiple strategies instantly.</p></div>
+      <div class="simulator-box">
+        <div class="input-row">
+          <input id="simulationInput" type="text" value="How can we reduce energy costs by 15%?" />
+          <button onclick="runSimulation()">Simulate</button>
+        </div>
+        <div class="scenario-grid" id="scenarioGrid"></div>
+        <div class="risk-box">
+          <h3>Risk Assessment</h3>
+          <div class="risk-grid">
+            <div><strong>Comfort Impact</strong><span>Moderate</span></div>
+            <div><strong>Business Impact</strong><span>Low</span></div>
+            <div><strong>ROI</strong><span>High</span></div>
+            <div><strong>Payback</strong><span>1 Month</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section features-section-img">
+    <div class="features-bg">
+      <img src="assets/aboutus_image.webp" alt="TowerMind Smart Building">
+    </div>
+    <div class="features-overlay"></div>
+
+    <div class="container features-center">
+      <span class="small-title">AI Capabilities</span>
+      <h2>Smart Building Intelligence Features</h2>
+
+      <div class="feature-box">
+        <div class="icon"><img src="assets/research.png" alt="research moinitoring"></div>
+        <div class="feature-text">
+          <h3>Resource Monitoring</h3>
+          <p>Track energy, water, occupancy, carbon and building cost in real time.</p>
+        </div>
+      </div>
+
+      <div class="feature-box">
+        <div class="icon"><img src="assets/agents.png" alt="AI Forecast"></div>
+        <div class="feature-text">
+          <h3>AI Forecasting</h3>
+          <p>Predict next month’s energy bill and explain key cost drivers.</p>
+        </div>
+      </div>
+
+      <div class="feature-box">
+        <div class="icon"><img src="assets/threat-detection.png" alt="Anomaly Detection"></div>
+        <div class="feature-text">
+          <h3>Anomaly Detection</h3>
+          <p>Detect abnormal energy spikes, water leaks and after-hours activity.</p>
+        </div>
+      </div>
+
+      <div class="feature-box">
+        <div class="icon"><img src="assets/simulation.png" alt="AI simulation"></div>
+        <div class="feature-text">
+          <h3>AI Simulation Engine</h3>
+          <p>Simulate strategies before implementation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h3>XENITH</h3>
+        <p>Autonomous Sustainability Building AI for smarter, greener resource management.</p>
+        <p class="footer-tagline">Powered by TowerMind</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <p class="footer-contact-item"><span class="footer-icon">✉</span><a href="mailto:XENITH7181@gmail.com">XENITH7181@gmail.com</a></p>
+        <p class="footer-contact-item"><span class="footer-icon">✆</span><a href="tel:0377283716">03-7728 3716</a></p>
+        <p class="footer-contact-item"><span class="footer-icon">⊙</span>No. 1, Jalan 1/116A, Off Jalan Sungai Besi, 57100 Kuala Lumpur.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <div class="footer-socials">
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-social-btn">Instagram</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" class="footer-social-btn">Facebook</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© 2026 XENITH · ImagineHack 2026 · Track 3</span>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+  <script src="js/floorplan.js"></script>
+  <script src="js/voltbuddy.js"></script>
+</body>
+</html>
